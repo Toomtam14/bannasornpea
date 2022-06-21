@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:bannasornpea/utility/my_constant.dart';
 import 'package:flutter/material.dart';
 
 class ShowForm extends StatelessWidget {
@@ -22,6 +23,8 @@ class ShowForm extends StatelessWidget {
       obscureText: obSecu ?? false,
       onChanged: changeFung,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Color.fromARGB(132, 181, 80, 215).withOpacity(0.1),
         suffixIcon: redEyeFunc == null
             ? Icon(iconData)
             : IconButton(
@@ -35,9 +38,13 @@ class ShowForm extends StatelessWidget {
           left: 16,
         ),
         enabledBorder:
-            OutlineInputBorder(borderRadius: BorderRadius.circular(17)),
+            OutlineInputBorder(
+              borderSide: BorderSide(color: MyConstant.dark),
+              borderRadius: BorderRadius.circular(12)),
         focusedBorder:
-            OutlineInputBorder(borderRadius: BorderRadius.circular(17)),
+            OutlineInputBorder(
+              borderSide: BorderSide(color: MyConstant.active),
+              borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
