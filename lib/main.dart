@@ -1,14 +1,38 @@
 import 'dart:io';
 
 import 'package:bannasornpea/states/authen.dart';
+import 'package:bannasornpea/states/my_service.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+final Map<String, WidgetBuilder> map = {
+  '/authen':(context) => const Authen(),
+  '/myService':(context) => const MyService(),
+};
+
+String? firstState;
+
+Future<void> main() async {
 
   HttpOverrides.global = MyHttpOvrride();
 
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  var result =  preferences.getStringList('data');
+  print('result = $result');
+
+  if (result == null) {
+    firstState = '/authen';
+    runApp(MyApp());
+  } else {
+    firstState = '/myService';
+    runApp(MyApp());
+  }
+
+  
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -16,7 +40,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Authen(),
+      debugShowCheckedModeBanner: false,
+      routes: map,
+      initialRoute: firstState,
     );
   }
 }
