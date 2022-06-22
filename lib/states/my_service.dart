@@ -3,6 +3,7 @@ import 'package:bannasornpea/bodys/non_finish_job.dart';
 import 'package:bannasornpea/utility/my_constant.dart';
 import 'package:bannasornpea/utility/my_dialog.dart';
 import 'package:bannasornpea/widgets/show_icon_button.dart';
+import 'package:bannasornpea/widgets/show_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -54,7 +55,7 @@ class _MyServiceState extends State<MyService> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: indexBodys,
         items: bottonNavigators,
-        onTap: (value){
+        onTap: (value) {
           setState(() {
             indexBodys = value;
           });
@@ -65,6 +66,11 @@ class _MyServiceState extends State<MyService> {
 
   AppBar newAppBar(BuildContext context) {
     return AppBar(
+      centerTitle: true,
+      title: ShowText(
+        text: titles[indexBodys],
+        textStyle: MyConstant().h2Style(),
+      ),
       elevation: 0,
       foregroundColor: MyConstant.dark,
       backgroundColor: Colors.white,
