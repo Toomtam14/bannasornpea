@@ -16,7 +16,6 @@ class MyDialog {
     required String subTitle,
     String? label,
     Function()? pressFunc,
-
   }) async {
     showDialog(
       context: context,

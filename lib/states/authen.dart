@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:bannasornpea/models/user_model.dart';
+import 'package:bannasornpea/states/my_service.dart';
 import 'package:bannasornpea/utility/my_constant.dart';
 import 'package:bannasornpea/utility/my_dialog.dart';
 import 'package:bannasornpea/widgets/show_button.dart';
@@ -154,11 +155,17 @@ class _AuthenState extends State<Authen> {
           UserModel userModel = UserModel.fromMap(element);
           if (password == userModel.password) {
             MyDialog(context: context).normalDialog(
-              pressFunc: (){},
-              label: 'Go to Service',
-              title: 'Welcome to App', 
-              subTitle: 'Login Success Welcome ${userModel.name}');
-
+                pressFunc: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MyService(),
+                      ),
+                      (route) => false);
+                },
+                label: 'Go to Service',
+                title: 'Welcome to App',
+                subTitle: 'Login Success Welcome ${userModel.name}');
           } else {
             MyDialog(context: context).normalDialog(
                 title: 'Password False', subTitle: "Please Try Again");
