@@ -45,4 +45,13 @@ class MyConstant {
       fontWeight: FontWeight.normal,
     ));
   }
+
+  TextStyle h3ActiveStyle() {
+    return GoogleFonts.athiti(
+        textStyle: TextStyle(
+      fontSize: 14,
+      color: active,
+      fontWeight: FontWeight.normal,
+    ));
+  }
 }

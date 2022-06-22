@@ -1,11 +1,15 @@
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
+
+import 'package:bannasornpea/models/user_model.dart';
 import 'package:bannasornpea/utility/my_constant.dart';
 import 'package:bannasornpea/utility/my_dialog.dart';
 import 'package:bannasornpea/widgets/show_button.dart';
 import 'package:bannasornpea/widgets/show_form.dart';
 import 'package:bannasornpea/widgets/show_image.dart';
 import 'package:bannasornpea/widgets/show_text.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class Authen extends StatefulWidget {
@@ -57,12 +61,14 @@ class _AuthenState extends State<Authen> {
         label: 'LOGIN',
         pressFunc: () {
           print('user = $user, password = $password');
+
           if ((user?.isEmpty ?? true) || (password?.isEmpty ?? true)) {
             print('Have Space');
             MyDialog(context: context).normalDialog(
                 title: 'Have Space ?', subTitle: 'Please Fill Every Blank');
           } else {
             print('No Space');
+            processCheckLogin();
           }
         },
       ),
@@ -128,5 +134,37 @@ class _AuthenState extends State<Authen> {
         ],
       ),
     );
+  }
+
+  Future<void> processCheckLogin() async {
+    String path =
+        'https://www.androidthai.in.th/egat/getUserWhereUserTam.php?isAdd=true&user=$user';
+
+    await Dio().get(path).then((value) {
+      print('value ==> $value');
+
+      if (value.toString() == 'null') {
+        MyDialog(context: context).normalDialog(
+            title: 'User False', subTitle: 'No $user in my Database');
+      } else {
+        var result = json.decode(value.data);
+        print('result ==> $result');
+
+        for (var element in result) {
+          UserModel userModel = UserModel.fromMap(element);
+          if (password == userModel.password) {
+            MyDialog(context: context).normalDialog(
+              pressFunc: (){},
+              label: 'Go to Service',
+              title: 'Welcome to App', 
+              subTitle: 'Login Success Welcome ${userModel.name}');
+
+          } else {
+            MyDialog(context: context).normalDialog(
+                title: 'Password False', subTitle: "Please Try Again");
+          }
+        }
+      }
+    });
   }
 }

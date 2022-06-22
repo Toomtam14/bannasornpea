@@ -2,6 +2,7 @@
 import 'package:bannasornpea/utility/my_constant.dart';
 import 'package:bannasornpea/widgets/show_image.dart';
 import 'package:bannasornpea/widgets/show_text.dart';
+import 'package:bannasornpea/widgets/show_text_button.dart';
 import 'package:flutter/material.dart';
 
 class MyDialog {
@@ -13,6 +14,9 @@ class MyDialog {
   Future<void> normalDialog({
     required String title,
     required String subTitle,
+    String? label,
+    Function()? pressFunc,
+
   }) async {
     showDialog(
       context: context,
@@ -28,6 +32,11 @@ class MyDialog {
           ),
           subtitle: ShowText(text: subTitle),
         ),
+        actions: [
+          pressFunc == null ? ShowTextButton(label: 'OK', pressFunc: (){
+          Navigator.pop(context);
+        }) : ShowTextButton(label: label!, pressFunc: pressFunc)
+        ],
       ),
     );
   }
