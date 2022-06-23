@@ -4,8 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 class MyConstant {
   // Field
   static Color primary = Color.fromARGB(132, 181, 80, 215);
-  static Color dark = Color.fromARGB(149, 0, 68, 12);
+  static Color dark = Colors.black;
   static Color active = Colors.red;
+  static Color light = Color.fromARGB(154, 8, 123, 114);
 
   // Method
 
@@ -31,8 +32,8 @@ class MyConstant {
   TextStyle h2Style() {
     return GoogleFonts.athiti(
         textStyle: TextStyle(
-      fontSize: 18,
-      color: dark,
+      fontSize: 22,
+      color: light,
       fontWeight: FontWeight.w700,
     ));
   }
@@ -40,7 +41,7 @@ class MyConstant {
   TextStyle h3Style() {
     return GoogleFonts.athiti(
         textStyle: TextStyle(
-      fontSize: 14,
+      fontSize: 20,
       color: dark,
       fontWeight: FontWeight.normal,
     ));
@@ -49,7 +50,7 @@ class MyConstant {
   TextStyle h3ActiveStyle() {
     return GoogleFonts.athiti(
         textStyle: TextStyle(
-      fontSize: 14,
+      fontSize: 20,
       color: active,
       fontWeight: FontWeight.normal,
     ));
