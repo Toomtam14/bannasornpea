@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class MyConstant {
   // Field
   static Color primary = Color.fromARGB(132, 181, 80, 215);
-  static Color dark = Colors.black;
+  static Color dark = Color.fromARGB(255, 128, 128, 128);
   static Color active = Colors.red;
   static Color light = Color.fromARGB(154, 8, 123, 114);
 

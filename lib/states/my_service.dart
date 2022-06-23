@@ -81,11 +81,11 @@ class _MyServiceState extends State<MyService> {
       centerTitle: true,
       title: ShowText(
         text: titles[indexBodys],
-        textStyle: MyConstant().h3Style(),
+        textStyle: MyConstant().h2Style(),
       ),
       elevation: 0,
-      foregroundColor: MyConstant.dark,
-      backgroundColor: Colors.white,
+      foregroundColor: MyConstant.light,
+      backgroundColor: Color.fromARGB(95, 164, 164, 164),
       actions: [
         ShowIconButton(
           iconData: Icons.exit_to_app,
