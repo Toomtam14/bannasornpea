@@ -35,6 +35,11 @@ class _NonFinishJobState extends State<NonFinishJob> {
   }
 
   Future<void> readDataJob() async {
+
+    if (jobModels.isNotEmpty) {
+      jobModels.clear();
+    }
+
     String idOfficer = dataUserLogin[0];
     String path =
         'https://www.androidthai.in.th/egat/getUserWhereIdOfficertam.php?isAdd=true&idOfficer=$idOfficer';
@@ -75,7 +80,9 @@ class _NonFinishJobState extends State<NonFinishJob> {
                           MaterialPageRoute(
                             builder: (context) =>
                                 Detail(jobModel: jobModels[index]),
-                          )).then((value) {});
+                          )).then((value) {
+                        readDataJob();
+                      });
                     },
                     child: showTitle(
                       head: 'Job :',
